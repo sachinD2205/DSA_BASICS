@@ -67,3 +67,27 @@ var merge1 = function (nums1, m, nums2, n) {
 
 
 // 2nd Approch - 
+// without using extra space
+// proper handle edge case for both array. make sure need not go outof bounds
+// edge case - when nums2 is empty then does not do anything just break loop
+var merge = function (nums1, m, nums2, n) {
+    let P = m - 1;
+    let Q = n - 1;
+    let R = m + n - 1;
+
+    for (let i = R; i >= 0; i--) {
+        if (Q < 0) {
+            break;
+        }
+
+        if (nums1[P] > nums2[Q] && P >= 0) {
+            nums1[i] = nums1[P]
+            P--
+        } else {
+            nums1[i] = nums2[Q]
+            Q--
+        }
+    }
+
+    return nums1
+};
